@@ -19,5 +19,6 @@ voter integer not null,
 val integer not null
 );
 
-insert into users (login, pwd, isadmin)
-values('admin', '21232f297a57a5a743894a0e4a801fc3', 1);
+-- On ne crée pas de compte admin par défault surtout avec un mot de passe faible (admin / admin)
+-- insert into users (login, pwd, isadmin)
+-- values('admin', '21232f297a57a5a743894a0e4a801fc3', 1);
