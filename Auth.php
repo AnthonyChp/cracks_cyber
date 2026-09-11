@@ -21,21 +21,16 @@ class Auth {
         $q = 'insert into users values(null, "'.addslashes($login).'", "'.md5($pwd).'", 0)';
         $db->query($q);
     }
-    
     public function tryLog($login, $pwd): bool {
         global $db;
-        $q = 'select * from users where login="'.$login.'" and pwd="'.md5($pwd).'"';
-        $found = null;
-        $ls = $db->query($q, PDO::FETCH_ASSOC);
-        if(!empty($ls)) {
-            foreach($ls as $l) { $found = $l; }
-        }
+        $s = $db->prepare('select id from users where login = :login and pwd = :pwd');
+        $s->execute(['login' => $login, 'pwd' => md5($pwd)]);
+        $found = $s->fetch(PDO::FETCH_ASSOC);
         if($found) {
             $this->log($found['id']);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
     
     public function log($id) {
