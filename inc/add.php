@@ -1,4 +1,14 @@
 <?php
+
+    if (!Auth::getInstance()->isLogged()) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['flash_error'] = "Vous devez être connecté pour accéder à cette page.";
+        header('Location: index.php?inc=login');
+        exit;
+    }
+
     if(!empty($_REQUEST['val'])) {
         $q = 'insert into cracks (content, owner, datesend) '
                 . ' values("'.nl2br($_REQUEST['content']).'", "'.$_REQUEST['owner'].'", '.time().')';

@@ -1,4 +1,10 @@
 <?php
+
+    if (!empty($_SESSION['flash_error'])) {
+        echo '<script>alert(' . json_encode($_SESSION['flash_error']) . ');</script>';
+        unset($_SESSION['flash_error']);
+    }
+
     if(!empty($_REQUEST['go'])) {
         if(Auth::getInstance()->tryLog($_REQUEST['login'], $_REQUEST['pwd'])) {
             header('Location:index.php?sid='.Auth::getInstance()->getSid());
