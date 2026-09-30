@@ -1,0 +1,4 @@
+# Bloque les fihcier sensible
+<FilesMatch "\.(db|sql|json)$">
+    Require all denied
+</FilesMatch>
