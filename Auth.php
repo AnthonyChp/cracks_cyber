@@ -60,4 +60,16 @@ class Auth {
         $q = 'update users set pwd="'.md5($newPwd).'" where id="'.$id.'" and pwd="'.$code.'"';
         $db->query($q);
     }
+
+    public function isAdmin() : bool
+    {
+        global $db;
+        if (!$this->isLogged()) {
+            return false;
+        }
+        $s = $db->prepare('select id from users where id = :id and isAdmin=1');
+        $s->execute(['id' => $_SESSION['userid']]);
+        $found = $s->fetch(PDO::FETCH_ASSOC);
+        return (bool)$found;
+    }
 }

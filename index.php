@@ -41,7 +41,19 @@
                     <a href="/?inc=logoff">
                         Déconnexion
                     </a>
-                </li><?php } ?>
+                </li>
+
+                    <?php if(Auth::getInstance()->isAdmin()) { ?>
+
+                        <li>
+                            <a href="rst.php">
+                                Reset de mot de passe
+                            </a>
+                        </li>
+
+                    <?php } ?>
+
+                <?php } ?>
             </menu>
         </header>
         <main>
