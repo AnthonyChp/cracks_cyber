@@ -15,7 +15,8 @@ class Markdown {
     public function __construct(protected string $content){}
     
     public function parse(): string {
-        $returns = $this->content;
+        // On supprime tout le HTML avant le formatage
+        $returns = htmlspecialchars($this->content, ENT_QUOTES, 'UTF-8');
         // bold, italic, striken, underlined
         $returns = preg_replace('`\*\*(.+)\*\*`', '<b>$1</b>', $returns);
         $returns = preg_replace('`\*(.+)\*`', '<i>$1</i>', $returns);

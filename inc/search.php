@@ -127,7 +127,7 @@
                     <?php foreach($usersList as $usr) { ?>
                     <option value="<?php echo $usr['id']; ?>"<?php
                         if($usr['id'] == $uid) { echo ' selected="selected"'; } ?>>
-                        <?php echo $usr['login']; ?>
+                        <?php echo htmlspecialchars($usr['login'], ENT_QUOTES, 'UTF-8'); ?>
                     </option>
                     <?php } ?>
                 </select>
