@@ -7,7 +7,7 @@
 
     if(!empty($_REQUEST['go'])) {
         if(Auth::getInstance()->tryLog($_REQUEST['login'], $_REQUEST['pwd'])) {
-            header('Location:index.php?sid='.Auth::getInstance()->getSid());
+            header('Location:index.php');
             exit;
         } else {
             echo '<p>Erreur d\'identifiants !</p>';
